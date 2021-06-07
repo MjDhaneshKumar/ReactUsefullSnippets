@@ -1,0 +1,50 @@
+1) Install - npm i react-ga -S
+
+
+
+2) Install, npm i history react-router-dom -S - if using router(NO NEED TO INSTALL,IF REACT DOM ROUTER IS NOT USING)
+
+3) IMPLEMENT (IF REACT ROUTER DOM IS USING)
+-----------------------------------------------------
+import React from 'react';
+import ReactDOM from 'react-dom';
+import ReactGA from 'react-ga';
+import { createBrowserHistory } from 'history';
+import { Router } from 'react-router-dom';
+
+const history = createBrowserHistory();
+
+// Initialize google analytics page view tracking
+history.listen(location => {
+  ReactGA.set({ page: location.pathname }); // Update the user's current page
+  ReactGA.pageview(location.pathname); // Record a pageview for the given page
+});
+
+const App = () => (
+  <Router history={history}>
+    <YourAppComponent />
+  </Router>
+);
+
+ReactDOM.render(<App />, document.getElementById('root'));
+
+
+3) IMPLEMENT (IF REACT ROUTER DOM IS USING)
+-----------------------------------------------------
+
+
+import React from 'react';
+import ReactGA from 'react-ga';
+
+//useEffect hook
+ReactGA.event({
+  category: "Sign Up",
+  action: "User pressed the big blue sign up button",
+});
+
+const App = () => (
+ 
+    <YourAppComponent />
+);
+
+ReactDOM.render(<App />, document.getElementById('root'));
